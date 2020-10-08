@@ -11,18 +11,19 @@ public class Calc {
 
         System.out.println("Введите первое число");
         x = in.nextDouble();
-        System.out.println("Введите второе число");
-        y = in.nextDouble();
         System.out.println("Введите операцию (+, -, /, *)");
         op = (char) System.in.read();
-        in.close();
+        System.out.println("Введите второе число");
+        y = in.nextDouble();
 
-        if ((y == 0) && (op == '/')) throw new Error();
-        double res = calculator(x, y, op);
-        System.out.println(res);
+        if ((y == 0) && (op == '/')) System.out.println("NaN");
+
+        double res = calc(x, y, op);
+
+        System.out.printf("%.2f %c %.2f = %.2f", x, op, y, res);
     }
 
-    private static double calculator(double x, double y, char op) {
+    private static double calc(double x, double y, char op) {
         double result = 0;
         switch (op) {
             case '+':
@@ -38,6 +39,7 @@ public class Calc {
                 result = x * y;
                 break;
             default:
+                throw new Error();
         }
         return result;
     }
